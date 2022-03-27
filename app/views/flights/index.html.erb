@@ -1,14 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Flights</h1>
+<h1>Search Flights</h1>
 
-<div id="Flights">
-  <% @flights.each do |flight| %>
-    <%= render flight %>
-    <p>
-      <%= link_to "Show this flight", flight %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New flight", new_flight_path %>
+<%= form_with model: @flight, method: :get do |form| %>
+  <div class="row">
+    <%= form.label :departure_airport_id, "Deperture Airport:" %>
+    <%= form.collection_select :departure_airport_id, Airport.order(:name), :id, :name, {:prompt => 'Select Departure Airport' } %>
+  </div>
+  <div class="row">
+    <%= form.label :departure_airport_id, "Arrival Airport:" %>
+    <%= form.collection_select :arrival_airport_id, Airport.order(:name), :id, :name, {:prompt => 'Select Arrival Airport' } %>
+  </div>
+  <div class="row">
+    <%= form.label :departure_airport_id, "Number of passangers:" %>
+    <%= form.select :passangers_nr, [1, 2, 3, 4], {:prompt => 'Select number' } %>
+  </div>
+  <div class="row">
+    <%= form.label :departure_airport_id, "Select date:" %>
+    <%= form.date_select :start_date, {:prompt => 'Select Date' } %>
+  </div>
+  <div class="row">
+    <%= form.submit "Search" %>
+  </div>
+<% end %> 

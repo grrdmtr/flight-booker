@@ -13,6 +13,7 @@ class FlightsController < ApplicationController
   # GET /Flights/new
   def new
     @flight = Flight.new
+    @airport_options = Airport.all.map{ |a| [ a.name, a.id ] }
   end
 
   # GET /Flights/1/edit
