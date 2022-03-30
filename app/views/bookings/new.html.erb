@@ -1,0 +1,24 @@
+<h3>Complete booking</h3>
+
+<%= form_with model: @booking, local: true do |form| %>
+  <%= form.hidden_field :flight_id, :value => params[:flight_id] %>
+  <div class="user-form-container">
+    <%= form.fields_for :users do |passengers_form| %>
+      <%= passengers_form.hidden_field :id, value: nil %>
+      <div class="user-form-field">
+        <div class="input-container">
+          <%= passengers_form.text_field :name, placeholder: 'First Name' %>
+        </div>
+        <div class="input-container">
+          <%= passengers_form.text_field :lastname, placeholder: 'Last Name' %>
+        </div>
+        <div class="input-container">
+          <%= passengers_form.text_field :email, placeholder: 'email' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-button">
+      <%= form.submit "Submit" %>
+    </div>
+  </div>
+<% end %>

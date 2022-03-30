@@ -3,19 +3,17 @@
 class BookingsController < ApplicationController
   def new
     @booking = Booking.new
-    @flights = find_flights(params[:booking_option])
     passenger_count = params[:passenger_count].to_i
-    passenger_count.times { @booking.passengers.build }
+    passenger_count.times { @booking.users.build }
   end
 
   def create
+    binding.pry
     @booking = Booking.new(passenger_params)
-    @flights = find_flights(params[:booking][:booking_option])
-    create_booking_seats(@flights, params[:booking][:passenger_count].to_i)
+    @flights = find_flights(params[:booking][:flight_id])
 
     if @booking.save
       flash[:notice] = "Please check your email for confirmation information!"
-      PassengerMailer.with(booking: @booking).thank_you_email.deliver_now
       redirect_to @booking
     else
       render :new
@@ -33,17 +31,11 @@ class BookingsController < ApplicationController
   private
 
     def passenger_params
-      params.require(:booking).permit(passengers_attributes: %i[name email])
+      params.require(:booking).permit(:flight_id, users_attributes: %i[id name lastname email])
     end
 
     def find_flights(booking_option)
       flight_numbers = booking_option.split
       flight_numbers.collect { |num| Flight.find_by(id: num) }
-    end
-
-    def create_booking_seats(flights, passenger_count)
-      passenger_count.times do
-        flights.each { |flight| @booking.seats.build(flight: flight) }
-      end
     end
 end
