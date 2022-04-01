@@ -1,14 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<div class="section">
+  <div class="container" id="flight-layout">
 
-<h1>Search Flights</h1>
+    <%= render 'search_form' %>
 
-<%= render 'search_form' %>
-
-<div class="flight-results">
-  <% if @booking_options %>
-    <p class="sub-title">Available Flights:</p>
-    <%= render 'results_form' %>
-  <% else %>
-    <p class="results-placeholder">Choose flight options to see the available flights.</p>
-  <% end %>
+    <div class="container">
+      <% if @booking_options %>
+        <p class="sub-title">Available Flights:</p>
+        <%= render 'results_form' %>
+      <% else %>
+      <div class="card" id="choose-flight">
+        <p class="subtitle">Choose flight options to see available flights.</p>
+      </div>  
+      <% end %>
+    </div>
+  </div>
 </div>
