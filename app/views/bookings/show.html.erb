@@ -1,8 +1,35 @@
 <p style="color: green"><%= notice %></p>
 
-<div id="booking-container">
-  <p>
-    <strong>Name:</strong>
-    <%= @booking.flight_id %>
-  </p>
+<div class="flight-container">
+  <% Flight.where(:id => @booking.flight_id).each do |flight| %>
+    <div class="row">Departure Airport:
+      <%= flight.departure_airport.name %>
+    </div>  
+    <div class="row">Arrival Airport:
+      <%= flight.arrival_airport.name %>
+    </div> 
+    <div class="row">Date:
+      <%= flight.start_date %>
+    </div>
+    <div class="row">Duration:
+      <%= flight.duration %>
+    </div>
+  <% end %>
+</div>    
+
+<div id="users-container">
+  <% @booking.users.each do |user| %>
+    </div>
+    <div class="user-info">
+      <div class="row">Name:
+        <span><%= user.name %></span>
+      </div>
+      <div class="row">Last Name:
+        <span><%= user.lastname %></span>
+      </div>
+      <div class="row">Email:
+        <span><%= user.email %></span>
+      </div> 
+    </div>
+  <% end %>  
 </div>

@@ -5,7 +5,10 @@ class Flight < ApplicationRecord
   belongs_to :arrival_airport, class_name: 'Airport',
                                foreign_key: :arrival_airport_id,
                                inverse_of: :arriving_flights
-  has_many :bookings
+
+  has_many :seats, dependent: :destroy
+  has_many :bookings, through: :seats
+  has_many :users, through: :bookings
 
   def details
     depart_time = humanize_departure

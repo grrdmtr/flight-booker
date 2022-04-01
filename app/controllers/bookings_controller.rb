@@ -8,7 +8,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-    binding.pry
     @booking = Booking.new(passenger_params)
     @flights = find_flights(params[:booking][:flight_id])
 
