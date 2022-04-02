@@ -1,35 +1,52 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="flight-container">
-  <% Flight.where(:id => @booking.flight_id).each do |flight| %>
-    <div class="row">Departure Airport:
-      <%= flight.departure_airport.name %>
-    </div>  
-    <div class="row">Arrival Airport:
-      <%= flight.arrival_airport.name %>
+<div class="section">
+  <div class="container" id="pass-info">
+    <div class="card" id="pass-info">
+      <% @booking.users.each do |user| %>
+        <div class="card-header">
+          <div class="title is-5">Passenger info</div>
+        </div>
+        <div class="card-content">
+          <div class="row">
+            <div class="label">First Name:</div>
+            <span><%= user.name %></span>
+          </div>
+          <div class="row">
+            <div class="label">Last Name:</div>
+            <span><%= user.lastname %></span>
+          </div>
+          <div class="row">
+            <div class="label">Email:</div>
+            <span><%= user.email %></span>
+          </div>
+        </div> 
+      <% end %> 
+    </div>
+  </div>
+  <div class="container" id="pass-info">
+    <div class="card" id="pass-info">
+      <div class="card-header">
+            <div class="title is-5">Flight info</div>
+      </div>
+      <% Flight.where(:id => @booking.flight_id).each do |flight| %>
+        <div class="card-content">
+          <div class="row">
+            <div class="label">Departure Airport::</div>
+            <span><%= flight.departure_airport.name %></span>
+          </div>
+          <div class="row">
+            <div class="label">Arrival Airport:</div>
+            <span> <%= flight.arrival_airport.name %></span>
+          </div>
+          <div class="row">
+            <div class="label">Date:</div>
+            <span> <%= flight.start_date %></span>
+          </div>
+          <div class="row">
+            <div class="label">Duration:</div>
+            <span> <%= flight.duration %></span>
+          </div>
+        </div>  
+      <% end %>
     </div> 
-    <div class="row">Date:
-      <%= flight.start_date %>
-    </div>
-    <div class="row">Duration:
-      <%= flight.duration %>
-    </div>
-  <% end %>
-</div>    
-
-<div id="users-container">
-  <% @booking.users.each do |user| %>
-    </div>
-    <div class="user-info">
-      <div class="row">Name:
-        <span><%= user.name %></span>
-      </div>
-      <div class="row">Last Name:
-        <span><%= user.lastname %></span>
-      </div>
-      <div class="row">Email:
-        <span><%= user.email %></span>
-      </div> 
-    </div>
-  <% end %>  
+  </div>   
 </div>

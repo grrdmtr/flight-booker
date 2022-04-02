@@ -38,6 +38,7 @@ form {
   color: #363636;
   box-shadow: none;
   border: 1px solid rgba(0, 0, 0, 0.15);
+  justify-content: space-between;
 }
 
 .card#choose-flight {
@@ -67,4 +68,48 @@ form {
 
 .navbar-brand h1 {
   color: white;
+}
+
+.radio-button {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.container#available-flights {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-header {
+  padding: 24px;
+}
+
+.container#pass-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notification:not(:last-child) {
+  margin-bottom: 0;
+}
+
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.card#pass-info {
+  width: 300px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }

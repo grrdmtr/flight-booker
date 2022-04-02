@@ -1,27 +1,32 @@
-<h3>Complete booking</h3>
+<div class="section">
+  <div class="container" id="pass-info">
+    
+    <p class="title is-2">Complete booking</p>
 
-<%= form_with model: @booking, local: true do |form| %>
-  <%= form.hidden_field :flight_id, :value => params[:flight_id] %>
-  <div class="user-form-container">
-    <%= form.fields_for :users do |passengers_form| %>
-      <%= passengers_form.hidden_field :id, value: nil %>
-      <div class="title">
-        <h3>Passenger Info</h3>
-      </div>
-      <div class="user-form-field">
-        <div class="input-container">
-          <%= passengers_form.text_field :name, placeholder: 'First Name' %>
-        </div>
-        <div class="input-container">
-          <%= passengers_form.text_field :lastname, placeholder: 'Last Name' %>
-        </div>
-        <div class="input-container">
-          <%= passengers_form.text_field :email, placeholder: 'email' %>
+    <%= form_with model: @booking, local: true do |form| %>
+      <%= form.hidden_field :flight_id, :value => params[:flight_id] %>
+      <div class="card">
+        <%= form.fields_for :users do |passengers_form| %>
+          <%= passengers_form.hidden_field :id, value: nil %>
+          <div class="card-header">
+            <p class="subtitle is-3">Passenger Info</p>
+          </div>
+          <div class="card-content">
+            <div class="input-container">
+              <%= passengers_form.text_field :name, placeholder: 'First Name', class:"input" %>
+            </div>
+            <div class="input-container">
+              <%= passengers_form.text_field :lastname, placeholder: 'Last Name', class:"input" %>
+            </div>
+            <div class="input-container">
+              <%= passengers_form.text_field :email, placeholder: 'email', class:"input" %>
+            </div>
+          </div>
+        <% end %>
+        <div class="form-button">
+          <%= form.submit "Submit", class:"button is-success" %>
         </div>
       </div>
     <% end %>
-    <div class="form-button">
-      <%= form.submit "Submit" %>
-    </div>
   </div>
-<% end %>
+</div>
