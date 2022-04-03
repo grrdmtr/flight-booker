@@ -12,13 +12,13 @@
             <%= button_to 'Book Flight',
                     new_booking_path,
                     method: :get,
-                    params: { flight_id: flight.id },
+                    params: { flight_id: flight.id, passenger_count: params[:passenger_count]},
                     id: 'booking-button',
                     class:"button is-success" %>
-          </div>  
-      </div> 
+          </div>
+      </div>
     <% if @booking_options.empty? %>
-    <p>Sorry, no flights match your search criteria.</p>
+      <p>Sorry, no flights match your search criteria.</p>
     <% end %>
   <% end %>
 <% end %>

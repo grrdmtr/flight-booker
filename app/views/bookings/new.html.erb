@@ -4,10 +4,12 @@
     <p class="title is-2">Complete booking</p>
 
     <%= form_with model: @booking, local: true do |form| %>
+
+      <%= form.hidden_field :booking_option, :value => params[:booking_option] %>
       <%= form.hidden_field :flight_id, :value => params[:flight_id] %>
-      <div class="card">
-        <%= form.fields_for :users do |passengers_form| %>
-          <%= passengers_form.hidden_field :id, value: nil %>
+
+      <%= form.fields_for :users do |passengers_form| %>
+        <div class="card">
           <div class="card-header">
             <p class="subtitle is-3">Passenger Info</p>
           </div>
@@ -21,12 +23,12 @@
             <div class="input-container">
               <%= passengers_form.text_field :email, placeholder: 'email', class:"input" %>
             </div>
+            <div class="form-button">
+              <%= form.submit "Submit", class:"button is-success" %>
+            </div>
           </div>
-        <% end %>
-        <div class="form-button">
-          <%= form.submit "Submit", class:"button is-success" %>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
