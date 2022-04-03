@@ -1,24 +1,24 @@
 <%= form_with url: "bookings/new/", method: "get", local: true do |form| %>
   <%= form.hidden_field :passenger_count, :value => params[:passenger_count] %>
-    <% @booking_options.each do |flight| %>
-      <div class="card" id="radio-card">
-          <div class="radio-button">
-            <%= form.radio_button :booking_option, { required: true } %>
-            <%= flight.departure_airport.name %>
-            <%= flight.arrival_airport.name %>
-            <%= flight.start_date %>
-          </div>
-          <div class="booking">
-            <%= button_to 'Book Flight',
-                    new_booking_path,
-                    method: :get,
-                    params: { flight_id: flight.id, passenger_count: params[:passenger_count]},
-                    id: 'booking-button',
-                    class:"button is-success" %>
-          </div>
+  <% @booking_options.each do |flight| %>
+    <div class="card" id="radio-card">
+      <div class="radio-button">
+        <%= form.radio_button :booking_option, { required: true } %>
+        <%= flight.departure_airport.name %>
+        <%= flight.arrival_airport.name %>
+        <%= flight.start_date %>
       </div>
-    <% if @booking_options.empty? %>
-      <p>Sorry, no flights match your search criteria.</p>
-    <% end %>
+      <div class="booking">
+        <%= button_to 'Book Flight',
+                new_booking_path,
+                method: :get,
+                params: { flight_id: flight.id, passenger_count: params[:passenger_count]},
+                id: 'booking-button',
+                class:"button is-success" %>
+      </div>
+    </div>
+  <% end %>  
+  <% if @booking_options.empty? %>
+    <p>Sorry, no flights match your search criteria.</p>
   <% end %>
 <% end %>
